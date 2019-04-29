@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Insert Slildeshow Images</title>
+	<title>Insert Category</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -36,32 +36,24 @@
 
 	<div class="container-contact100">
 		<div class="wrap-contact100">
-			<form class="contact100-form validate-form" method="POST" action="insert.php" enctype="multipart/form-data">
+			<form class="contact100-form validate-form" method="POST" action="insert_category.php" enctype="multipart/form-data">
 				<span class="contact100-form-title">
-					Insert Products
+					Insert Category
 				</span>
 
 
 
 
-				<div class="wrap-input100 validate-input">
-					<label class="label-input100" for="file">Upload Image</label>
-
-					<input class="input-file" type="file" name="slide_image" id="file" required />
-
-					<span class="focus-input100"></span>
-				</div>
-
-				<div class="wrap-input100 validate-input">
-					<label class="label-input100" for="message">Product Description</label>
-					<textarea id="message" class="input100" name="image_desc" placeholder="Type Product Description..." rows="15"></textarea>
+        <div class="wrap-input100 validate-input">
+					<label class="label-input100" for="name">Enter Category</label>
+					<input id="name" class="input100" type="text" name="cat_title" placeholder="Enter Category Name..." required>
 					<span class="focus-input100"></span>
 				</div>
 
 
 				<div class="container-contact100-form-btn">
-					<button class="contact100-form-btn" name="insert_image">
-						Insert Products
+					<button class="contact100-form-btn" name="insert_cat">
+						Insert Category
 					</button>
 				</div>
 
@@ -131,25 +123,21 @@
 <!-- php code to insert data to database -->
 <?php
 
-  if(isset($_POST['insert_image'])){
+  if(isset($_POST['insert_cat'])){
 
     // getting data from fields and store in variables to add to the database
-    $image_desc = $_POST['image_desc'];
+    $category_name = $_POST['cat_title'];
 
-    //getting image form field and store in variable to add to the SQLiteDatabase
-    $slide_image = $_FILES['slide_image']['name'];
-    $slide_image_tmp = $_FILES['slide_image']['tmp_name'];
 
-		move_uploaded_file($slide_image_tmp, "slideshow_image/$slide_image");
 
-    $insert_image = "INSERT INTO slideshows (image_desc,slide_image)
-    VALUES ('$image_desc','$slide_image')";
+    $insert_cat = "INSERT INTO categories (cat_title)
+    VALUES ('$category_name')";
 
-		$insert_img = mysqli_query($con, $insert_image);
+		$insert_cat_name = mysqli_query($con, $insert_cat);
 
-		if ($insert_img) {
-			echo "<script> alert('Images Has Been Inserted! ')</script>";
-			echo "<script>window.open('insert.php','_self')</script>";
+		if ($insert_cat_name) {
+			echo "<script> alert('Category Has Been Inserted! ')</script>";
+			echo "<script>window.open('insert_category.php','_self')</script>";
 		}
 
 
