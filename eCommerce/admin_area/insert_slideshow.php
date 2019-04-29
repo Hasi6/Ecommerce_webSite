@@ -1,5 +1,5 @@
 <?php
-  include("../functions/functions.php");
+  // include("../functions/functions.php");
   include('../includes/db.php');
 ?>
 <!DOCTYPE html>
@@ -36,75 +36,28 @@
 
 	<div class="container-contact100">
 		<div class="wrap-contact100">
-			<form class="contact100-form validate-form" method="POST" action="insert_product.php" enctype="multipart/form-data">
+			<form class="contact100-form validate-form" method="POST" action="insert_slideshow.php" enctype="multipart/form-data">
 				<span class="contact100-form-title">
 					Insert Products
 				</span>
 
 
-				<div class="wrap-input100 validate-input" data-validate="Name is required">
-					<label class="label-input100" for="name">Product Title</label>
-					<input id="name" class="input100" type="text" name="product_title" placeholder="Enter Product Title..." required>
-					<span class="focus-input100"></span>
-				</div>
-
-				<div class="wrap-input100">
-					<div class="label-input100">Product Category</div>
-					<div>
-						<select class="js-select2" name="product_cat" required>
-							<option>Select Category</option>
-							<!-- calling addCategories function to display the already exsits categories -->
-							<?php
-								addCategories();
-							 ?>
-						</select>
-						<div class="dropDownSelect2"></div>
-					</div>
-					<span class="focus-input100"></span>
-				</div>
-
-				<div class="wrap-input100">
-					<div class="label-input100">Product Brand</div>
-					<div>
-						<select class="js-select2" name="product_brand" required>
-							<option>Select Brand</option>
-
-							<!-- calling addBrands function to display the already exsits brands -->
-							<?php
-								addBrands();
-							 ?>
-						</select>
-						<div class="dropDownSelect2"></div>
-					</div>
-					<span class="focus-input100"></span>
-				</div>
-
-
 				<div class="wrap-input100 validate-input">
 					<label class="label-input100" for="file">Upload Image</label>
 
-					<input class="input-file" type="file" name="product_image" id="file" required />
+					<input class="input-file" type="file" name="slide_image" id="file" required />
 
 					<span class="focus-input100"></span>
 				</div>
 
-				<div class="wrap-input100 validate-input">
-					<label class="label-input100" for="name">Product Price</label>
-					<input id="name" class="input100" type="text" name="product_price" placeholder="Enter Product Price..." required>
-					<span class="focus-input100"></span>
-				</div>
+
 
 				<div class="wrap-input100 validate-input">
-					<label class="label-input100" for="message">Product Description</label>
-					<textarea id="message" class="input100" name="product_desc" placeholder="Type Product Description..." rows="15"></textarea>
+					<label class="label-input100" for="message">Image Description</label>
+					<textarea id="message" class="input100" name="image_desc" placeholder="Type Product Description..." rows="15"></textarea>
 					<span class="focus-input100"></span>
 				</div>
 
-				<div class="wrap-input100 validate-input">
-					<label class="label-input100" for="name">Product Keyword</label>
-					<input id="name" class="input100" type="text" name="product_keywords" placeholder="Enter Product Keywords..." required>
-					<span class="focus-input100"></span>
-				</div>
 
 				<div class="container-contact100-form-btn">
 					<button class="contact100-form-btn" name="insert_post">
@@ -181,27 +134,22 @@
   if(isset($_POST['insert_post'])){
 
     // getting data from fields and store in variables to add to the database
-    $product_title = $_POST['product_title'];
-    $product_cat = $_POST['product_cat'];
-    $product_brand = $_POST['product_brand'];
-    $product_price = $_POST['product_price'];
-    $product_desc = $_POST['product_desc'];
-    $product_keywords = $_POST['product_keywords'];
+    $image_desc = $_POST['image_desc'];
 
     //getting image form field and store in variable to add to the SQLiteDatabase
-    $product_image = $_FILES['product_image']['name'];
-    $product_image_tmp = $_FILES['product_image']['tmp_name'];
+    $slide_image = $_FILES['slide_image']['name'];
+    $slide_image_tmp = $_FILES['slide_image']['tmp_name'];
 
-		move_uploaded_file($product_image_tmp, "product_images/$product_image");
+		move_uploaded_file($product_image_tmp, "slideshow_images/$slide_image");
 
-    $insert_product = "INSERT INTO products (product_cat,product_brand,product_title,product_price,product_desc,product_image,product_keywords)
-    VALUES ('$product_cat','$product_brand','$product_title','$product_price','$product_desc','$product_image','$product_keywords')";
+    $insert_image = "INSERT INTO slideshow (slide_image,image_desc)
+    VALUES ('$slide_image','$image_desc')";
 
-		$insert_pro = mysqli_query($con, $insert_product);
+		$insert_pro = mysqli_query($con, $insert_image);
 
 		if ($insert_pro) {
-			echo "<script> alert('Product Has Been Inserted! ')</script>";
-			echo "<script>window.open('insert_product.php','_self')</script>";
+			echo "<script> alert('Image Has Been Inserted! ')</script>";
+			echo "<script>window.open('insert_slideshow.php','_self')</script>";
 		}
 
 
