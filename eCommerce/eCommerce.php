@@ -110,6 +110,7 @@
     <ul class="nav navbar-nav">
         <?php
           getBrands();
+          getBrandPro();
          ?>
     </ul>
     </div>
@@ -123,6 +124,7 @@
         <ul class="nav navbar-nav">
             <?php
               getPro();
+              getCatPro();
              ?>
         </ul>
         <!-- </div> -->

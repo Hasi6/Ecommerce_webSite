@@ -230,7 +230,7 @@ function getBrandPro(){
 
   if(isset($_GET['brand_id'])){
 
-    $cat_id = $_GET['brand_id'];
+    $brand_id = $_GET['brand_id'];
 
   global $con;
 
@@ -244,20 +244,19 @@ function getBrandPro(){
     echo "<h3> There is no Products in this Brand</h3>";
   }
   else{
-    echo "<h3 style='width:100%;'>There are $count_cats Products in this Cateory</h3> <br/>";
+    echo "<h3 style='width:100%;'>There are $count_brands Products in this Brand</h3> <br/>";
   }
 
-  while($row_cat_pro = mysqli_fetch_array($run_cat_pro)){
+  while($row_brand_pro = mysqli_fetch_array($run_brand_pro)){
 
-    $pro_id = $row_cat_pro['product_id'];
-    $pro_cat = $row_cat_pro['product_cat'];
-    $pro_brand = $row_cat_pro['product_brand'];
-    $pro_title = $row_cat_pro['product_title'];
-    $pro_price = $row_cat_pro['product_price'];
-    $pro_keyword = $row_cat_pro['product_keywords'];
-    $pro_image = $row_cat_pro['product_image'];
+    $pro_id = $row_brand_pro['product_id'];
+    $pro_cat = $row_brand_pro['product_cat'];
+    $pro_brand = $row_brand_pro['product_brand'];
+    $pro_title = $row_brand_pro['product_title'];
+    $pro_price = $row_brand_pro['product_price'];
+    $pro_keyword = $row_brand_pro['product_keywords'];
+    $pro_image = $row_brand_pro['product_image'];
 
-    $display_cat_name = "<h2>$pro_cat</h2>";
 
     echo "
     <div class='thumbnail'> <img src='admin_area/product_images/$pro_image' alt='Thumbnail Image 1' class='img-responsive' width=200>
