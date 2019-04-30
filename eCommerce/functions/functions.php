@@ -15,7 +15,7 @@
       $cat_id = $row_cats['cat_id'];
       $cat_title = $row_cats['cat_title'];
 
-      echo "<li><a href='#'>$cat_title</a></li>";
+      echo "<li><a href='ecommerce.php?cat_id=$cat_id'>$cat_title</a></li>";
     }
   }
 
@@ -32,7 +32,7 @@
       $brand_id = $row_brands['brand_id'];
       $brand_title = $row_brands['brand_title'];
 
-      echo "<li><a href='#'>$brand_title</a></li>";
+      echo "<li><a href='ecommerce.php?brand_id=$brand_id'>$brand_title</a></li>";
     }
   }
 
@@ -74,6 +74,10 @@
   // get products to the main ldap_control_paged_result
   function getPro(){
 
+    if(!isset($_GET['cat_id'])){
+
+      if(!isset($_GET['brand_id'])){
+
     global $con;
 
     $get_pro = "SELECT * FROM products ORDER BY RAND() LIMIT 0,10";
@@ -102,10 +106,11 @@
         </div>
       </div>
       ";
-
+      }
     }
-
   }
+}
+
 
   // get slideshow Images
   function getSlideImage(){
@@ -169,5 +174,106 @@
     }
   }
   }
+
+// get products according to Cateory
+  function getCatPro(){
+
+    if(isset($_GET['cat_id'])){
+
+      $cat_id = $_GET['cat_id'];
+
+    global $con;
+
+    $get_cat_pro = "SELECT * FROM products WHERE product_cat='$cat_id'";
+
+    $run_cat_pro = mysqli_query($con, $get_cat_pro);
+
+    $count_cats = mysqli_num_rows($run_cat_pro);
+
+    if($count_cats == 0){
+      echo "<h3> There is no Products in this Category</h3>";
+    }
+    else{
+      echo "<h3 style='width:100%;'>There are $count_cats Products in this Cateory</h3> <br/>";
+    }
+
+    while($row_cat_pro = mysqli_fetch_array($run_cat_pro)){
+
+      $pro_id = $row_cat_pro['product_id'];
+      $pro_cat = $row_cat_pro['product_cat'];
+      $pro_brand = $row_cat_pro['product_brand'];
+      $pro_title = $row_cat_pro['product_title'];
+      $pro_price = $row_cat_pro['product_price'];
+      $pro_keyword = $row_cat_pro['product_keywords'];
+      $pro_image = $row_cat_pro['product_image'];
+
+      $display_cat_name = "<h2>$pro_cat</h2>";
+
+      echo "
+      <div class='thumbnail'> <img src='admin_area/product_images/$pro_image' alt='Thumbnail Image 1' class='img-responsive' width=200>
+        <div class='caption'>
+          <h3>
+          $pro_title
+          </h3>
+          <p>$pro_keyword</p>
+          <p><a href='details.php?pro_id=$pro_id'>Details</a></P>
+          <p><a href='add_to_cart.php?pro_id=$pro_id' class='btn btn-primary' role='button'><span>$ $pro_price <br></span> Add to Cart</a></p>
+        </div>
+      </div>
+      ";
+      }
+  }
+  }
+
+// get products according to Brand
+function getBrandPro(){
+
+  if(isset($_GET['brand_id'])){
+
+    $cat_id = $_GET['brand_id'];
+
+  global $con;
+
+  $get_brand_pro = "SELECT * FROM products WHERE product_brand='$brand_id'";
+
+  $run_brand_pro = mysqli_query($con, $get_brand_pro);
+
+  $count_brands = mysqli_num_rows($run_brand_pro);
+
+  if($count_brands == 0){
+    echo "<h3> There is no Products in this Brand</h3>";
+  }
+  else{
+    echo "<h3 style='width:100%;'>There are $count_cats Products in this Cateory</h3> <br/>";
+  }
+
+  while($row_cat_pro = mysqli_fetch_array($run_cat_pro)){
+
+    $pro_id = $row_cat_pro['product_id'];
+    $pro_cat = $row_cat_pro['product_cat'];
+    $pro_brand = $row_cat_pro['product_brand'];
+    $pro_title = $row_cat_pro['product_title'];
+    $pro_price = $row_cat_pro['product_price'];
+    $pro_keyword = $row_cat_pro['product_keywords'];
+    $pro_image = $row_cat_pro['product_image'];
+
+    $display_cat_name = "<h2>$pro_cat</h2>";
+
+    echo "
+    <div class='thumbnail'> <img src='admin_area/product_images/$pro_image' alt='Thumbnail Image 1' class='img-responsive' width=200>
+      <div class='caption'>
+        <h3>
+        $pro_title
+        </h3>
+        <p>$pro_keyword</p>
+        <p><a href='details.php?pro_id=$pro_id'>Details</a></P>
+        <p><a href='add_to_cart.php?pro_id=$pro_id' class='btn btn-primary' role='button'><span>$ $pro_price <br></span> Add to Cart</a></p>
+      </div>
+    </div>
+    ";
+    }
+}
+}
+
 
 ?>
