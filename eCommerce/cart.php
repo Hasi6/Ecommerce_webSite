@@ -138,7 +138,7 @@
 <!-- cart table -->
 
 <div class="table-users">
-<div class="header">Check Add to Car</div>
+<div class="header">Check Add to Cart</div>
 
 
 <form class="" action="" method="post" enctype="multipart/form-data">
@@ -204,22 +204,68 @@
                      <td width=20%> $ <?php echo $single_price ?></td>
                      <td width=20%><input type="number" name="qty" style="width:40px;"></td>
                      <td width=20%><?php echo  'hello everone' ;?></td>
-                     <td><input type="checkbox" name="remove[]" style="width:150px; margin:0 auto;"></td>
+                     <td><input type="checkbox" name="remove[]" style="width:150px; margin:0 auto;" value="<?php echo $pro_id ?>"></td>
 
                    </tr>
                 <?php
               }
 
                }
-               echo $total_price;
+
 
                ?>
+               <!-- <tr style="float:right; width:"> -->
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+                 <td style="float:left;"><b>Sub Total: $<?php  echo $total_price;?></b></td>
+               <!-- </tr> -->
 
+               <tr>
+                 <td></td>
+                 <td></td>
+                 <td style="float:right"><button class="btn btn-primary" name="update_cart">Update Cart</button></td>
+                 <td><button class="btn btn-success" name="continue">Continue Shopping</button></td>
+                 <td><a href="checkout.php>"<button class="btn btn-warning" name="checkout">Checkout</button></a></td>
+               </tr>
 
 
 </table>
 
 </form>
+
+<!-- update main cart function -->
+<?php
+
+      $ip = getIp();
+
+      if(isset($_POST['update_cart'])){
+
+          foreach($_POST['remove'] as $remove_id) {
+
+            $delete_product = "DELETE FROM cart WHERE p_id='$remove_id' AND ip_add='$ip'";
+
+            $run_delete = mysqli_query($con, $delete_product);
+
+            if($run_delete){
+              echo "<script>alert('Item Has Been Deleted')</script>
+              <script>window.open('cart.php','_self')</script>";
+            }
+            else{
+              echo "<script>window.open('cart.php','_self')</script>";
+            }
+
+          }
+
+      }
+
+      if(isset($_POST['continue'])){
+        echo "<script>window.open('ecommerce.php','_self')</script>";
+      }
+
+ ?>
+ <!-- end the update cart function -->
 
 </div>
 
