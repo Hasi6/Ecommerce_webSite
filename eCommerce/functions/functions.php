@@ -97,7 +97,8 @@
           $pro_title
           </h3>
           <p>$pro_keyword</p>
-          <p><a href='#' class='btn btn-primary' role='button'><span>$ $pro_price <br></span> Add to Cart</a></p>
+          <p><a href='details.php?pro_id=$pro_id'>Details</a></P>
+          <p><a href='add_to_cart.php?pro_id=$pro_id' class='btn btn-primary' role='button'><span>$ $pro_price <br></span> Add to Cart</a></p>
         </div>
       </div>
       ";
@@ -106,7 +107,7 @@
 
   }
 
-
+  // get slideshow Images
   function getSlideImage(){
 
     global $con;
@@ -129,7 +130,44 @@
 
   }
 
+  // get details of detail page
+  function getProDetails(){
 
+    global $con;
 
+    if(isset($_GET['pro_id'])){
+
+    $product_id = $_GET['pro_id'];
+
+    $get_pro = "SELECT * FROM products WHERE product_id='$product_id'";
+
+    $run_pro = mysqli_query($con, $get_pro);
+
+    while($row_pro = mysqli_fetch_array($run_pro)){
+
+      $pro_id = $row_pro['product_id'];
+      $pro_title = $row_pro['product_title'];
+      $pro_price = $row_pro['product_price'];
+      $pro_keyword = $row_pro['product_keywords'];
+      $pro_image = $row_pro['product_image'];
+      $pro_desc = $row_pro['product_desc'];
+
+      echo "
+      <div class='thumbnail'> <img src='admin_area/product_images/$pro_image' alt='Thumbnail Image 1' class='img-responsive'>
+        <div class='caption'>
+          <h3>
+          $pro_title
+          </h3>
+          <h2>$pro_keyword</h2>
+          <p>$pro_desc</p>
+          <p><a href='add_to_cart.php?pro_id=$pro_id' class='btn btn-primary' role='button'><span>$ $pro_price <br></span> Add to Cart</a></p>
+          <h3 style='color: green;'>Product Id : $product_id</h3>
+        </div>
+      </div>
+      ";
+
+    }
+  }
+  }
 
 ?>

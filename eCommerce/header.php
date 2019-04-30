@@ -26,7 +26,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarsExamples09">
               <ul class="nav navbar-nav">
                 <li>
-                  <a href="index.html" class="nav-link">Home</a>
+                  <a href="ecommerce.php" class="nav-link">Home</a>
                 </li>
                 <li>
                   <a href="#who" class="nav-link">My Account</a>

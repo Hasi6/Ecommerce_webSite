@@ -117,29 +117,17 @@
 
 <div class="container">
 
-    <div class="nav navbar-expand-md navbar-custom text-center m-2">
-      <!-- <div class="container" id="navigation-bar2"> -->
-
-        <ul class="nav navbar-nav">
+    <div class="text-center m-2">
+      <div class="container" id="navigation-bar2">
             <?php
-              getPro();
+
+              getProDetails();
+
              ?>
-        </ul>
-        <!-- </div> -->
+
+        </div>
     </div>
   </div>
-  <nav class="text-center">
-    <!-- Add class .pagination-lg for larger blocks or .pagination-sm for smaller blocks-->
-    <ul class="pagination">
-      <li> <a href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span> </a> </li>
-      <li class="active"><a href="#">1</a></li>
-      <li><a href="#">2</a></li>
-      <li><a href="#">3</a></li>
-      <li><a href="#">4</a></li>
-      <li class="disabled"><a href="#">5</a></li>
-      <li> <a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> </a> </li>
-    </ul>
-  </nav>
 </div>
 <hr>
 <h2 class="text-center">FEATURED PRODUCTS</h2>
