@@ -24,7 +24,11 @@
 </head>
 <body>
       <div class="container"id="guest_area">
-          <span style="float:right;">Welcome guest! <br><b>Tital Items: </b> <br> <b>Total Price: </b> <br> <a href="cart.php">Go to cart</a></span>
+          <span style="float:right;">Welcome guest! <br><b>Total Items: <?php totalItems(); ?> </b> <br> <b>Total Price: $ <?php totalPrice(); ?> </b> <br> <a href="cart.php">Go to cart</a></span>
+          <?php
+              echo $ip = getIp();
+              cart();
+           ?>
       </div>
       <nav class="nav navbar-expand-md navbar-custom">
 
@@ -37,6 +41,7 @@
           </ul>
           </div>
       </nav>
+      <!-- <iframe src="admin_area/insert_category.php" width="100%" height="400px"></iframe> -->
 <div class="container">
     <div class="row">
 
@@ -68,6 +73,7 @@
             <a class="left carousel-control" href="#carousel1" data-slide="prev"><span class="icon-prev"></span></a> <a class="right carousel-control" href="#carousel1" data-slide="next"><span class="icon-next"></span></a>
           </div>
         </div>
+        <!-- <iframe src="admin_area/insert.php" width="100%" height="400px"></iframe> -->
 </div>
 
     <hr>
@@ -115,6 +121,8 @@
     </ul>
     </div>
 </nav>
+<!-- <iframe src="admin_area/insert_brand.php" width="100%" height="400px;"></iframe> -->
+
 
 <div class="container">
 
@@ -127,8 +135,12 @@
               getCatPro();
              ?>
         </ul>
+
         <!-- </div> -->
+
     </div>
+    <h3>To Insert Products</h3>
+    <!-- <iframe src="admin_area/insert_product.php" width="100%" height="400px"></iframe> -->
   </div>
   <nav class="text-center">
     <!-- Add class .pagination-lg for larger blocks or .pagination-sm for smaller blocks-->

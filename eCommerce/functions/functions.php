@@ -102,7 +102,7 @@
           </h3>
           <p>$pro_keyword</p>
           <p><a href='details.php?pro_id=$pro_id'>Details</a></P>
-          <p><a href='add_to_cart.php?pro_id=$pro_id' class='btn btn-primary' role='button'><span>$ $pro_price <br></span> Add to Cart</a></p>
+          <p><a href='ecommerce.php?pro_id=$pro_id' class='btn btn-primary' role='button'><span>$ $pro_price <br></span> Add to Cart</a></p>
         </div>
       </div>
       ";
@@ -165,7 +165,7 @@
           </h3>
           <h2>$pro_keyword</h2>
           <p>$pro_desc</p>
-          <p><a href='add_to_cart.php?pro_id=$pro_id' class='btn btn-primary' role='button'><span>$ $pro_price <br></span> Add to Cart</a></p>
+          <p><a href='ecommerce.php?pro_id=$pro_id' class='btn btn-primary' role='button'><span>$ $pro_price <br></span> Add to Cart</a></p>
           <h3 style='color: green;'>Product Id : $product_id</h3>
         </div>
       </div>
@@ -217,7 +217,7 @@
           </h3>
           <p>$pro_keyword</p>
           <p><a href='details.php?pro_id=$pro_id'>Details</a></P>
-          <p><a href='add_to_cart.php?pro_id=$pro_id' class='btn btn-primary' role='button'><span>$ $pro_price <br></span> Add to Cart</a></p>
+          <p><a href='ecommerce.php?pro_id=$pro_id' class='btn btn-primary' role='button'><span>$ $pro_price <br></span> Add to Cart</a></p>
         </div>
       </div>
       ";
@@ -266,7 +266,7 @@ function getBrandPro(){
         </h3>
         <p>$pro_keyword</p>
         <p><a href='details.php?pro_id=$pro_id'>Details</a></P>
-        <p><a href='add_to_cart.php?pro_id=$pro_id' class='btn btn-primary' role='button'><span>$ $pro_price <br></span> Add to Cart</a></p>
+        <p><a href='ecommerce.php?pro_id=$pro_id' class='btn btn-primary' role='button'><span>$ $pro_price <br></span> Add to Cart</a></p>
       </div>
     </div>
     ";
@@ -305,7 +305,7 @@ function getAllPro(){
         </h3>
         <p>$pro_keyword</p>
         <p><a href='details.php?pro_id=$pro_id'>Details</a></P>
-        <p><a href='add_to_cart.php?pro_id=$pro_id' class='btn btn-primary' role='button'><span>$ $pro_price <br></span> Add to Cart</a></p>
+        <p><a href='ecommerce.php?pro_id=$pro_id' class='btn btn-primary' role='button'><span>$ $pro_price <br></span> Add to Cart</a></p>
       </div>
     </div>
     ";
@@ -354,7 +354,7 @@ function getSearchPro(){
         </h3>
         <p>$pro_keyword</p>
         <p><a href='details.php?pro_id=$pro_id'>Details</a></P>
-        <p><a href='add_to_cart.php?pro_id=$pro_id' class='btn btn-primary' role='button'><span>$ $pro_price <br></span> Add to Cart</a></p>
+        <p><a href='ecommerce.php?pro_id=$pro_id' class='btn btn-primary' role='button'><span>$ $pro_price <br></span> Add to Cart</a></p>
         <h3>Product Id: $pro_id</h3>
       </div>
     </div>
@@ -363,5 +363,138 @@ function getSearchPro(){
   }
 
 }
+
+// get user ip address to add cart
+// usersla gdk eka para gttoth pro id eka use krnna be eka nisa userslata uniq id ekak one hodama eka ip address eka
+function getIp() {
+    $ip = $_SERVER['REMOTE_ADDR'];
+
+    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+        $ip = $_SERVER['HTTP_CLIENT_IP'];
+    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    }
+
+    return $ip;
+}
+
+
+// get products to Cart
+function cart(){
+
+  if(isset($_GET['pro_id'])){
+
+    global $con;
+
+    $ip = getIp();
+
+    $pro_id = $_GET['pro_id'];
+
+    $check_pro = "SELECT * FROM cart WHERE ip_add ='$ip' AND  p_id ='$pro_id'";
+
+    $run_check = mysqli_query($con, $check_pro);
+
+    if(mysqli_num_rows($run_check) > 0){
+      echo "<script>window.alert('Already in Cart')</script>
+      <script>window.open('ecommerce.php','_self')</script>"; //donothing
+    }
+    else{
+
+        $insert_pro = "INSERT INTO cart (p_id,ip_add) VALUES ('$pro_id','$ip')";
+
+        $run_pro = mysqli_query($con, $insert_pro);
+
+        echo "<script>window.alert('Added to the Cart')</script>
+        <script>window.open('ecommerce.php','_self')</script>";
+    }
+
+  }
+
+
+
+
+
+}
+
+// display added items
+function totalItems(){
+
+  if(isset($_GET['pro_id'])){
+
+    global $con;
+
+    $ip = getIp();
+
+    $get_items = "SELECT * FROM cart WHERE ip_add='$ip'";
+
+    $run_items = mysqli_query($con, $get_items);
+
+    $count_items = mysqli_num_rows($run_items);
+}
+
+    else{ //to auto update the total items and total price
+      global $con;
+
+      $ip = getIp();
+
+      $get_items = "SELECT * FROM cart WHERE ip_add='$ip'";
+
+      $run_items = mysqli_query($con, $get_items);
+
+      $count_items = mysqli_num_rows($run_items);
+    }
+
+    echo $count_items;
+
+}
+
+//getting total price
+
+function totalPrice(){
+
+  $total_price = 0;
+
+  global $con;
+
+  $ip = getIp();
+
+  $sel_price = "SELECT * from cart WHERE ip_add='$ip'";
+
+  $run_price = mysqli_query($con, $sel_price);
+
+  while($p_price = mysqli_fetch_array($run_price)){
+
+    $pro_id = $p_price['p_id'];
+
+    $pro_price = "SELECT * from products WHERE product_id ='$pro_id'";
+
+    $run_pro_price = mysqli_query($con, $pro_price);
+
+    while ($pp_price = mysqli_fetch_array($run_pro_price)) {
+
+      $product_price = array($pp_price['product_price']);
+
+      $values = array_sum($product_price);
+
+      $total_price += $values;
+
+    }
+
+  }
+
+  echo $total_price;
+
+}
+
+
+
+
+
+
+
+
+
+
+
 
 ?>

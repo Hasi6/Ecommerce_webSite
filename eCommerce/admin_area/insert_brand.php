@@ -38,7 +38,7 @@
 		<div class="wrap-contact100">
 			<form class="contact100-form validate-form" method="POST" action="insert_brand.php" enctype="multipart/form-data">
 				<span class="contact100-form-title">
-					Insert Category
+					Insert Brand
 				</span>
 
 
@@ -128,8 +128,15 @@
     // getting data from fields and store in variables to add to the database
     $category_name = $_POST['brand_title'];
 
+    $check_brand = "SELECT * FROM brands WHERE brand_title ='$category_name'";
 
-
+    $run_check = mysqli_query($con, $check_brand);
+      
+    if(mysqli_num_rows($run_check) > 0){
+      echo "<script>window.alert('Already in Brand Menu')</script>
+      <script>window.open('insert_brand.php','_self')</script>"; //donothing
+    }
+    else{
     $insert_brand = "INSERT INTO brands (brand_title)
     VALUES ('$category_name')";
 
@@ -145,7 +152,7 @@
 
 
 
-
+    }
 
   }
 

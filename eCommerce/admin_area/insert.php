@@ -141,7 +141,7 @@
     $slide_image_tmp = $_FILES['slide_image']['tmp_name'];
 
 		move_uploaded_file($slide_image_tmp, "slideshow_image/$slide_image");
-
+      
     $insert_image = "INSERT INTO slideshows (image_desc,slide_image)
     VALUES ('$image_desc','$slide_image')";
 
