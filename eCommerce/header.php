@@ -29,6 +29,9 @@
                   <a href="ecommerce.php" class="nav-link">Home</a>
                 </li>
                 <li>
+                  <a href="all_products.php" class="nav-link">All Products</a>
+                </li>
+                <li>
                   <a href="#who" class="nav-link">My Account</a>
                 </li>
                 <li>

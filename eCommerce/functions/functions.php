@@ -259,7 +259,7 @@ function getBrandPro(){
 
 
     echo "
-    <div class='thumbnail'> <img src='admin_area/product_images/$pro_image' alt='Thumbnail Image 1' class='img-responsive' width=200>
+    <div class='thumbnail text-center'> <img src='admin_area/product_images/$pro_image' alt='Thumbnail Image 1' class='img-responsive' width=200>
       <div class='caption'>
         <h3>
         $pro_title
@@ -274,5 +274,94 @@ function getBrandPro(){
 }
 }
 
+// get all produts to the all_products.php ldap_control_paged_result
+function getAllPro(){
+
+  if(!isset($_GET['cat_id'])){
+
+    if(!isset($_GET['brand_id'])){
+
+  global $con;
+
+  $get_pro = "SELECT * FROM products ORDER BY product_id DESC";
+
+  $run_pro = mysqli_query($con, $get_pro);
+
+  while($row_pro = mysqli_fetch_array($run_pro)){
+
+    $pro_id = $row_pro['product_id'];
+    $pro_cat = $row_pro['product_cat'];
+    $pro_brand = $row_pro['product_brand'];
+    $pro_title = $row_pro['product_title'];
+    $pro_price = $row_pro['product_price'];
+    $pro_keyword = $row_pro['product_keywords'];
+    $pro_image = $row_pro['product_image'];
+
+    echo "
+    <div class='thumbnail'> <img src='admin_area/product_images/$pro_image' alt='Thumbnail Image 1' class='img-responsive' width=200>
+      <div class='caption'>
+        <h3>
+        $pro_title
+        </h3>
+        <p>$pro_keyword</p>
+        <p><a href='details.php?pro_id=$pro_id'>Details</a></P>
+        <p><a href='add_to_cart.php?pro_id=$pro_id' class='btn btn-primary' role='button'><span>$ $pro_price <br></span> Add to Cart</a></p>
+      </div>
+    </div>
+    ";
+    }
+  }
+}
+}
+
+// get products by search field
+function getSearchPro(){
+
+  global $con;
+
+  if(isset($_GET['search'])){
+
+  $search_query = $_GET['user_query'];
+
+  $get_pro = "SELECT * FROM products WHERE product_keywords LIKE '%$search_query%'";
+
+  $run_pro = mysqli_query($con, $get_pro);
+
+  $count_search_products = mysqli_num_rows($run_pro);
+
+  if($count_search_products == 0){
+    echo "<h3> There is no Products</h3>";
+  }
+  else{
+    echo "<h3 style='width:100%;'>There are $count_search_products Products</h3> <br/>";
+  }
+
+  while($row_pro = mysqli_fetch_array($run_pro)){
+
+    $pro_id = $row_pro['product_id'];
+    $pro_cat = $row_pro['product_cat'];
+    $pro_brand = $row_pro['product_brand'];
+    $pro_title = $row_pro['product_title'];
+    $pro_price = $row_pro['product_price'];
+    $pro_keyword = $row_pro['product_keywords'];
+    $pro_image = $row_pro['product_image'];
+
+    echo "
+    <div class='thumbnail text-center'> <img src='admin_area/product_images/$pro_image' alt='Thumbnail Image 1' class='img-responsive' width=200>
+      <div class='caption'>
+        <h3>
+        $pro_title
+        </h3>
+        <p>$pro_keyword</p>
+        <p><a href='details.php?pro_id=$pro_id'>Details</a></P>
+        <p><a href='add_to_cart.php?pro_id=$pro_id' class='btn btn-primary' role='button'><span>$ $pro_price <br></span> Add to Cart</a></p>
+        <h3>Product Id: $pro_id</h3>
+      </div>
+    </div>
+    ";
+    }
+  }
+
+}
 
 ?>
