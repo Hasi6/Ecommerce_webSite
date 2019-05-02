@@ -1,12 +1,9 @@
 <?php
-  session_start();
   include("header.php");
   include("functions/functions.php");
   include('includes/db.php');
 ?>
 
-<!-- link css -->
-<link rel="stylesheet" href="css/style.css">
 
 <!-- Bootstrap -->
 <link rel="stylesheet" href="css/bootstrap.css">
@@ -46,7 +43,7 @@
       </nav>
       <!-- <iframe src="admin_area/insert_category.php" width="100%" height="400px"></iframe> -->
 <div class="container">
-    <!-- <div class="row">
+    <div class="row">
 
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <div id="carousel1" class="carousel slide">
@@ -76,8 +73,8 @@
             <a class="left carousel-control" href="#carousel1" data-slide="prev"><span class="icon-prev"></span></a> <a class="right carousel-control" href="#carousel1" data-slide="next"><span class="icon-next"></span></a>
           </div>
         </div>
-        <iframe src="admin_area/insert.php" width="100%" height="400px"></iframe>
-</div> -->
+        <!-- <iframe src="admin_area/insert.php" width="100%" height="400px"></iframe> -->
+</div>
 
     <hr>
   </div>
@@ -119,7 +116,7 @@
     <ul class="nav navbar-nav">
         <?php
           getBrands();
-          getBrandPro();
+          // getBrandPro();
          ?>
     </ul>
     </div>
@@ -129,187 +126,27 @@
 
 <div class="container">
 
-    <div class="nav navbar-expand-md navbar-custom text-center m-2">
-      <!-- <div class="container" id="navigation-bar2"> -->
+      <div class="container" style="background:gray;
+      border-radius: 4px;
+      ">
 
-        <ul class="nav navbar-nav">
+            <?php
+              // getPro();
+              // getCatPro();
 
-        </ul>
+              if(!isset($_SESSION['customer_email'])){
 
-<!-- cart table -->
-
-<div class="table-users">
-<div class="header">Check Add to Cart</div>
-
-
-<form class="" action="" method="post" enctype="multipart/form-data">
-<table cellspacing="0" class="text-center">
-<tr>
-  <th width=20% class="text-center">Prduct(s)</th>
-  <th width=20% class="text-center">Price</th>
-  <th width=20% class="text-center">Quntity</th>
-  <th width=20% class="text-center">Total Price</th>
-  <th width=100% class="text-center" style="float:right">Remove</th>
-</tr>
-
-<tr>
-   <?php
-
-									$total_price = 0;
-
-									global $con;
-
-									$ip = getIp();
-
-									$sel_price = "SELECT * from cart WHERE ip_add='$ip'";
-
-									$run_price = mysqli_query($con, $sel_price);
-
-									while($p_price = mysqli_fetch_array($run_price)){
-
-										$pro_id = $p_price['p_id'];
-
-										$pro_price = "SELECT * from products WHERE product_id ='$pro_id'";
-
-										$run_pro_price = mysqli_query($con, $pro_price);
-
-										while ($pp_price = mysqli_fetch_array($run_pro_price)) {
-
-											$product_price = array($pp_price['product_price']);
-
-											$product_title = $pp_price['product_title'];
-
-											$product_image = $pp_price['product_image'];
-
-											$single_price = $pp_price['product_price'];
-
-											$product_id = $pp_price['product_id'];
-
-											$values = array_sum($product_price);
-
-											$total_price += $values;
-
-
-
-
-
-									 ?>
-                   </tr>
-
-                   <tr align='center'>
-                     <td width=20%><?php echo $product_title; ?> <br>
-                       <img src="admin_area/product_images/<?php echo $product_image ?>" alt="<?php echo $pro_id ;?> image">
-                       <br>
-                       Product Id: <?php echo $product_id ?>
-                       </td>
-                     <td width=20%> $ <?php echo $single_price ?></td>
-
-                     <!-- create add quntity function -->
-                     <?php
-
-                    $qty;
-
-                     if(isset($_POST['update_cart'])){
-
-            							$qty = $_POST['qty'];
-
-            							$update_qty = "UPDATE cart SET qty='$qty'";
-
-            							$run_qty = mysqli_query($con, $update_qty);
-
-            							$_SESSION['qty']=$qty;
-
-            							$total_price = $total_price*$qty;
-						          }
-
-                     }
-
-
-                      ?>
-                     <td width=20%><input type="number" name="qty" style="width:40px;" value="<?php echo  $_SESSION['qty']; ?>"></td>
-                     <td width=20%><?php echo  $single_price?></td>
-                     <td><input type="checkbox" name="remove[]" style="width:150px; margin:0 auto;" value="<?php echo $pro_id ?>"></td>
-
-                   </tr>
-                <?php
+                include("customer_loging.php");
+              }
+              else{
+                include("payment.php");
               }
 
+             ?>
 
+        </div>
 
-               ?>
-               <!-- <tr style="float:right; width:"> -->
-               <td></td>
-               <td></td>
-               <td></td>
-               <td></td>
-                 <td style="float:left;"><b>Sub Total: $<?php  echo $total_price;?></b></td>
-               <!-- </tr> -->
-
-               <tr>
-                 <td></td>
-                 <td style="float:right"><button class="btn btn-primary" name="update_cart">Update Cart</button></td>
-                 <!-- <td style=""><button class="btn btn-danger" name="remove_item">Remove Item</button></td> -->
-                 <td><button class="btn btn-success" name="continue">Continue Shopping</button></td>
-                 <td><button class="btn btn-warning" name="checkout">Checkout</button></td>
-               </tr>
-
-
-</table>
-
-</form>
-
-<!-- update main cart function -->
-<?php
-
-function updatecart(){
-
-global $con;
-
-$ip = getIp();
-
-if(isset($_POST['update_cart'])){
-
-  foreach($_POST['remove'] as $remove_id){
-
-  $delete_product = "delete from cart where p_id='$remove_id' AND ip_add='$ip'";
-
-  $run_delete = mysqli_query($con, $delete_product);
-
-  if($run_delete){
-
-  echo "<script>window.open('cart.php','_self')</script>";
-
-  }
-
-  }
-
-}
-if(isset($_POST['checkout'])){
-
-  echo "<script>window.open('checkout.php','_self')</script>";
-
-  }
-
-
-
-if(isset($_POST['continue'])){
-
-echo "<script>window.open('ecommerce.php','_self')</script>";
-
-}
-
-}
-echo @$up_cart = updatecart();
- ?>
- <!-- end the update cart function -->
-
-</div>
-
-<!-- end of cart table -->
-
-        <!-- </div> -->
-
-    </div>
+    <h3>To Insert Products</h3>
     <!-- <iframe src="admin_area/insert_product.php" width="100%" height="400px"></iframe> -->
   </div>
   <nav class="text-center">

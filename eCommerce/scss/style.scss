@@ -91,10 +91,10 @@ table {
          }
       }
 
-      &:nth-child(2):before { content: 'Name:'; }
-      &:nth-child(3):before { content: 'Email:'; }
-      &:nth-child(4):before { content: 'Phone:'; }
-      &:nth-child(5):before { content: 'Comments:'; }
+      &:nth-child(2):before { content: 'price:'; }
+      &:nth-child(3):before { content: 'quntity:'; }
+      &:nth-child(4):before { content: 'Total Price:'; }
+      &:nth-child(5):before { content: 'Remove:'; }
    }
    
    tr {
