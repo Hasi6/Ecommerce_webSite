@@ -131,7 +131,7 @@
               <div class="register_container">
 
                   <div class="signup-content">
-                      <form method="POST" id="signup-form" class="signup-form">
+                      <form method="POST" id="signup-form" class="signup-form" action="customer_register.php" enctype="multipart/form-data">
                           <h2 class="form-title">Create account</h2>
                           <div class="form-group">
                               <input type="text" class="form-input" name="c_name" id="name" placeholder="Your Name"/>
@@ -140,8 +140,8 @@
                               <input type="email" class="form-input" name="c_email" id="email" placeholder="Your Email"/>
                           </div>
                           <div class="form-group">
-                              <input type="text" class="form-input" name="c_pass" id="password" placeholder="Password"/>
-                              <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
+                              <input type="password" class="form-input" name="c_pass" id="password" placeholder="Password"/>
+                              <!-- <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span> -->
                           </div>
                           <div class="form-group">
                               <input type="file" class="form-input" name="c_image" id="email"/>
@@ -403,7 +403,7 @@
                               <textarea class="form-input" name="c_address" rows="5" cols="8"></textarea>
                           </div>
                           <div class="form-group">
-                              <input type="submit" name="submit" id="submit" class="form-submit" value="Register Here"/>
+                              <input type="submit" name="register" id="submit" class="form-submit" value="Register Here"/>
                           </div>
                       </form>
 
@@ -412,6 +412,10 @@
 
 
       </div>
+
+      <?php
+          customerRegitration();
+       ?>
 
 
   </div>

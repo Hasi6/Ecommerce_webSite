@@ -487,7 +487,46 @@ function totalPrice(){
 }
 
 
+function customerRegitration(){
 
+  global $con;
+
+
+if(isset($_POST['register'])){
+
+  $ip = getIp();
+
+  $c_name = $_POST['c_name'];
+  $c_email = $_POST['c_email'];
+  $c_pass = $_POST['c_pass'];
+  $c_country = $_POST['c_country'];
+  $c_city = $_POST['c_city'];
+  $c_contact = $_POST['c_contact'];
+  $c_address = $_POST['c_address'];
+
+  $c_image = $_FILES['c_image']['name'];
+
+  $c_image_tmp = $_FILES['c_image']['tmp_name'];
+
+  move_uploaded_file($c_image_tmp, "customer/customer_images/$c_image");
+
+  $insert_customers = "INSERT INTO customers (customer_ip,customer_name,customer_email,customer_pass,customer_country,customer_city,customer_contact,customer_address,customer_image)
+  VALUES ('$ip','$c_name','$c_email','$c_pass','$c_country','$c_city','$c_contact','$c_address','$c_image')";
+
+  $run_customers = mysqli_query($con, $insert_customers);
+
+  if ($run_customers) {
+
+    echo "<script>alert('Registration Succsessful')</script>";
+    echo "<script>window.open('customer_register.php','_self')</script>";
+
+  }
+
+
+}
+
+
+}
 
 
 
