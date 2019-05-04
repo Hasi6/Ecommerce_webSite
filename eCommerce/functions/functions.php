@@ -515,11 +515,32 @@ if(isset($_POST['register'])){
 
   $run_customers = mysqli_query($con, $insert_customers);
 
-  if ($run_customers) {
+  // if ($run_customers) {
+  //
+  //   echo "<script>alert('Registration Succsessful')</script>";
+  //   echo "<script>window.open('customer_register.php','_self')</script>";
+  //
+  // }
 
-    echo "<script>alert('Registration Succsessful')</script>";
-    echo "<script>window.open('customer_register.php','_self')</script>";
+  $sel_cart = "SELECT * FROM cart WHERE ip_add='$ip'";
 
+  $run_cart = mysqli_query($con, $sel_cart);
+
+  $check_cart = mysqli_num_rows($run_cart);
+
+  if ($check_cart == 0) {
+
+    $_SESSION['customer_emil']=$c_email;
+
+    echo "<script>alert('Your Account hasbeen Created Succsessfully, now you can continue Shopping')</script>";
+    echo "<script>window.open('customer/my_account.php','_self')</script>";
+  }
+  else{
+
+    $_SESSION['customer_emil']=$c_email;
+
+    echo "<script>alert('Your Account hasbeen Created Succsessfully, now you can continue Shopping')</script>";
+    echo "<script>window.open('checkout.php','_self')</script>";
   }
 
 
