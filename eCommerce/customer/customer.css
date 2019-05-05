@@ -93,3 +93,22 @@ body{
     font-weight: 600;
     color: #0062cc;
 }
+#left_box {
+float: left;
+width: 35%;
+height: 100%;
+margin: 2.5%;
+}
+}
+#right_box{
+float: right;
+width: 55%;
+height: auto;
+margin: 2.5%;
+}
+#right_bosx{
+    float:right;
+    background:blue;
+    width:25%;
+    height:280px;
+}

@@ -67,21 +67,56 @@
                 <div class="col-md-2">
                 </div>
             </div>
-            <div class="row">
+
+            <div class="row" id="left_box">
                 <div class="col-md-4"><br>
                     <div class="profile-work">
-                        <a href="">My Orders</a><br/>
+                        <a href="my_account.php?my_orders">My Orders</a><br/>
                         <hr>
-                        <a href="">Edit Account</a><br/>
+                        <a href="my_account.php?edit_account">Edit Account</a><br/>
                         <hr>
-                        <a href="">Change Password</a><br>
+                        <a href="my_account.php?change_pass">Change Password</a><br>
                         <hr>
-                        <a href="">Delete Account</a>
+                        <a href="my_account.php?delete_account">Delete Account</a>
                         <hr>
 
                     </div>
                 </div>
             </div>
+
+            <div class="" id="right_box">
+              <?php
+
+              if(!isset($_GET['my_orders'])){
+                if(!isset($_GET['edit_account'])){
+                  if(!isset($_GET['change_pass'])){
+                    if(!isset($_GET['delete_account'])){
+
+                      echo "<h1> Go and See Our Products in <a href='../ecommerce.php'> Here</a> </h1>'";
+
+                    }
+
+                  }
+
+                }
+
+              }
+
+               ?>
+
+               <div class="" id="right_box">
+                 <?php
+
+                 if(isset($_GET['edit_account'])){
+                   include("edit_account.php");
+                 }
+
+                  ?>
+              </div>
+
+            </div>
+
+
     </div>
 
 
