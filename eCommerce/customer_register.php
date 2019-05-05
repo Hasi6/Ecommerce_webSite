@@ -397,6 +397,9 @@
                               </select>
                           </div>
                           <div class="form-group">
+                              <input type="text" class="form-input" name="c_city" id="email" placeholder="Your City"/>
+                          </div>
+                          <div class="form-group">
                               <input type="text" class="form-input" name="c_contact" id="email" placeholder="Your Countact"/>
                           </div>
                           <div class="form-group">

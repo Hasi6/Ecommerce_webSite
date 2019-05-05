@@ -1,5 +1,5 @@
 <?php
-include("functions/functions.php");
+include("../functions/functions.php");
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +10,7 @@ include("functions/functions.php");
     <title></title>
 
     <!-- style -->
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="../styles/style.css">
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -30,10 +30,10 @@ include("functions/functions.php");
             <div class="collapse navbar-collapse justify-content-end" id="navbarsExamples09" style="width: 100%; margin: 0 100px;">
               <ul class="nav navbar-nav">
                 <li>
-                  <a href="ecommerce.php" class="nav-link">Home</a>
+                  <a href="../ecommerce.php" class="nav-link">Home</a>
                 </li>
                 <li>
-                  <a href="all_products.php" class="nav-link">All Products</a>
+                  <a href="../all_products.php" class="nav-link">All Products</a>
                 </li>
                 <li>
                   <a href="#who" class="nav-link">My Account</a>
@@ -51,16 +51,16 @@ include("functions/functions.php");
                   <a href="#who" class="nav-link  nav-right">Sign In</a>
                 </li>
                 <li>
-                  <a href="cart.php" class="nav-link  nav-rightlink">Cart</a>
+                  <a href="../cart.php" class="nav-link  nav-rightlink">Cart</a>
                 </li>
                 <li>
                   <?php
 
                     if(!isset($_SESSION['customer_email'])){
-                      echo "<a href='checkout.php'>Loging</a>";
+                      echo "<a href='../checkout.php'>Loging</a>";
                     }
                     else{
-                      echo "<a href='logout.php'>Logout</a>";
+                      echo "<a href='../logout.php'>Logout</a>";
                     }
 
                    ?>
@@ -70,7 +70,7 @@ include("functions/functions.php");
 
                     if(isset($_SESSION['customer_email'])){
                       $name = $_SESSION['customer_email'];
-                      echo "<a href='customer/my_account.php'>$name</a>";
+                      echo "<a href='my_account.php'>$name</a>";
                     }
                     else{
                       echo "<a href='#'>Guest</a>";
