@@ -628,14 +628,14 @@ if(isset($_POST['update'])){
   move_uploaded_file($c_image_tmp, "customer_images/$c_image");
 
   $update_customers = "UPDATE customers SET customer_name='$c_name', customer_email='$c_email', customer_pass='$c_pass',
-  customer_country='$c_country', customer_city='$c_city', customer_contact='contact', customer_address='$c_address',
+  customer_country='$c_country', customer_city='$c_city', customer_contact='$c_contact', customer_address='$c_address',
   customer_image='$c_image' WHERE customer_id='$id'";
 
   $run_update = mysqli_query($con, $update_customers);
 
   if ($run_update) {
     echo "<script>alert('Your Account has Been Updated!! To continue You Have to login Again')</script>";
-    echo "<script>window.open('../logout.php','_self')</script>";
+    echo "<script>window.open('my_account.php?edit_account','_self')</script>";
   }
 }
 
@@ -673,6 +673,24 @@ function changePass($user){
           echo "<script>alert('Password Changed Succsessfully!! Now log againg to shopping')</script>";
           echo "<script>window.open('../logout.php','_self')</script>";
         }
+      }
+    }
+
+    function deleteAccount($user){
+
+      global $con;
+
+      if(isset($_POST['delete_account'])){
+
+        $delete_account = "DELETE FROM customers WHERE customer_email = '$user'";
+
+        $run_delete = mysqli_query($con, $delete_account);
+
+        $check_delete = mysqli_num_rows($run_delete);
+
+          echo "<script>alert('Account Deleted Succsessfully')</script>";
+          echo "<script>window.open('../logout.php','_self')</script>";
+
       }
     }
 

@@ -134,21 +134,21 @@
                       <form method="POST" id="signup-form" class="signup-form" action="customer_register.php" enctype="multipart/form-data">
                           <h2 class="form-title">Create account</h2>
                           <div class="form-group">
-                              <input type="text" class="form-input" name="c_name" id="name" placeholder="Your Name"/>
+                              <input type="text" class="form-input" name="c_name" id="name" placeholder="Your Name" required/>
                           </div>
                           <div class="form-group">
-                              <input type="email" class="form-input" name="c_email" id="email" placeholder="Your Email"/>
+                              <input type="email" class="form-input" name="c_email" id="email" placeholder="Your Email" required/>
                           </div>
                           <div class="form-group">
-                              <input type="password" class="form-input" name="c_pass" id="password" placeholder="Password"/>
+                              <input type="password" class="form-input" name="c_pass" id="password" placeholder="Password" required/>
                               <!-- <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span> -->
                           </div>
                           <div class="form-group">
-                              <input type="file" class="form-input" name="c_image" id="email"/>
+                              <input type="file" class="form-input" name="c_image" id="email" required/>
                           </div>
                           <div class="form-group">
                               <!-- <input type="password" class="form-input" name="re_password" id="re_password" placeholder="Repeat your password"/> -->
-                              <select class="form-input" name="c_country">
+                              <select class="form-input" name="c_country" required>
                                 <option value="">Select Your Country</option>
                                 <option value="Afghanistan">Afghanistan</option>
                                 <option value="Åland Islands">Åland Islands</option>
@@ -397,13 +397,13 @@
                               </select>
                           </div>
                           <div class="form-group">
-                              <input type="text" class="form-input" name="c_city" id="email" placeholder="Your City"/>
+                              <input type="text" class="form-input" name="c_city" id="email" placeholder="Your City" required/>
                           </div>
                           <div class="form-group">
-                              <input type="text" class="form-input" name="c_contact" id="email" placeholder="Your Countact"/>
+                              <input type="text" class="form-input" name="c_contact" id="email" placeholder="Your Countact" required/>
                           </div>
                           <div class="form-group">
-                              <textarea class="form-input" name="c_address" rows="5" cols="8"></textarea>
+                              <textarea class="form-input" name="c_address" rows="5" cols="8" required></textarea>
                           </div>
                           <div class="form-group">
                               <input type="submit" name="register" id="submit" class="form-submit" value="Register Here"/>
