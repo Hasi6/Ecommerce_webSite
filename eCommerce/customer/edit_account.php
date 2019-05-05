@@ -20,7 +20,6 @@
  ?>
 
 <body>
-  <link rel="stylesheet" href="../css/style_reg.css">
 
 
   <form method="POST" id="signup-form" class="signup-form" action="" enctype="multipart/form-data">

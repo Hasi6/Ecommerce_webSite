@@ -8,6 +8,7 @@
 <!-- Bootstrap -->
 <link rel="stylesheet" href="../css/bootstrap.css">
 <link rel="stylesheet" href="customer.css">
+<link rel="stylesheet" href="../css/style_reg.css">
 
 <!-- Link Google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
@@ -47,6 +48,7 @@
 
                       $c_image = $row_details['customer_image'];
                       $c_name = $row_details['customer_name'];
+                      $c_pass = $row_details['customer_pass']; // to pass as a parameter to the changePass function
 
                        ?>
 
@@ -109,6 +111,10 @@
 
                  if(isset($_GET['edit_account'])){
                    include("edit_account.php");
+                 }
+
+                 if(isset($_GET['change_pass'])){
+                   include("change_pass.php");
                  }
 
                   ?>

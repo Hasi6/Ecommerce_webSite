@@ -634,12 +634,47 @@ if(isset($_POST['update'])){
   $run_update = mysqli_query($con, $update_customers);
 
   if ($run_update) {
-    echo "<script>alert('Your Account has Been Updated!!')</script>";
+    echo "<script>alert('Your Account has Been Updated!! To continue You Have to login Again')</script>";
     echo "<script>window.open('../logout.php','_self')</script>";
   }
 }
 
 }
+
+//change the password
+
+function changePass($user){
+
+  global $con;
+
+  if(isset($_POST['change_pass'])){
+
+    $current_pass = $_POST['current_pass'];
+    $new_pass = $_POST['new_pass'];
+    $confirm_new_pass = $_POST['cnew_pass'];
+
+      $sel_pass = "SELECT * FROM customers WHERE customer_email='$user' AND customer_pass='$current_pass'";
+
+      $run_pass = mysqli_query($con, $sel_pass);
+
+      $row_pass = mysqli_num_rows($run_pass);
+
+      if($row_pass == 0){
+        echo "<script>alert('Current Password is invalid')</script>";
+        echo "<script>window.open('my_account.php?change_pass','_self')</script>";
+      }
+      if ($new_pass != $confirm_new_pass) {
+        echo "<script>alert('Password and Confirm Password are not Matched')</script>";
+        }
+        else {
+          $update_pass = "UPDATE customers SET customer_pass='$new_pass'";
+
+          $set_update_pass = mysqli_query($con, $update_pass);
+          echo "<script>alert('Password Changed Succsessfully!! Now log againg to shopping')</script>";
+          echo "<script>window.open('../logout.php','_self')</script>";
+        }
+      }
+    }
 
 
 ?>
