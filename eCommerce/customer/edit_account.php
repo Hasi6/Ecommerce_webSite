@@ -1,17 +1,38 @@
+<?php
+
+    $user = $_SESSION['customer_email'];
+
+    $get_customer = "SELECT * FROM customers WHERE customer_email = '$user'";
+
+    $run_customer = mysqli_query($con, $get_customer);
+
+    $row_customer = mysqli_fetch_array($run_customer);
+
+    $id = $row_customer['customer_id'];
+    $name = $row_customer['customer_name'];
+    $email = $row_customer['customer_email'];
+    $pass = $row_customer['customer_pass'];
+    $country = $row_customer['customer_country'];
+    $city = $row_customer['customer_city'];
+    $contact = $row_customer['customer_contact'];
+    $address = $row_customer['customer_address'];
+
+ ?>
+
 <body>
   <link rel="stylesheet" href="../css/style_reg.css">
 
 
-  <form method="POST" id="signup-form" class="signup-form" action="customer_register.php" enctype="multipart/form-data">
+  <form method="POST" id="signup-form" class="signup-form" action="" enctype="multipart/form-data">
       <h2 class="form-title">Update account</h2>
       <div class="form-group">
-          <input type="text" class="form-input" name="c_name" id="name" placeholder="Your Name"/>
+          <input type="text" class="form-input" name="c_name" id="name" placeholder="<?php echo $name; ?>"/ required>
       </div>
       <div class="form-group">
-          <input type="email" class="form-input" name="c_email" id="email" placeholder="Your Email"/>
+          <input type="email" class="form-input" name="c_email" id="email" placeholder="<?php echo $email ?>"/required>
       </div>
       <div class="form-group">
-          <input type="password" class="form-input" name="c_pass" id="password" placeholder="Password"/>
+          <input type="password" class="form-input" name="c_pass" id="password" placeholder="New password"/required>
           <!-- <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span> -->
       </div>
       <div class="form-group">
@@ -19,8 +40,8 @@
       </div>
       <div class="form-group">
           <!-- <input type="password" class="form-input" name="re_password" id="re_password" placeholder="Repeat your password"/> -->
-          <select class="form-input" name="c_country">
-            <option value="">Select Your Country</option>
+          <select class="form-input" name="c_country" required>
+            <option value="<?php echo $country; ?>"><?php echo $country; ?></option>
             <option value="Afghanistan">Afghanistan</option>
             <option value="Åland Islands">Åland Islands</option>
             <option value="Albania">Albania</option>
@@ -268,16 +289,16 @@
           </select>
       </div>
       <div class="form-group">
-          <input type="text" class="form-input" name="c_city" id="email" placeholder="Your City"/>
+          <input type="text" class="form-input" name="c_city" id="email" placeholder="<?php echo $city; ?>"/ required>
       </div>
       <div class="form-group">
-          <input type="text" class="form-input" name="c_contact" id="email" placeholder="Your Countact"/>
+          <input type="text" class="form-input" name="c_contact" id="email" placeholder="<?php echo $contact; ?>"/ required>
       </div>
       <div class="form-group">
-          <textarea class="form-input" name="c_address" rows="5" cols="8"></textarea>
+          <textarea class="form-input" name="c_address" rows="5" cols="8" placeholder="<?php echo $address; ?>" required></textarea>
       </div>
       <div class="form-group">
-          <input type="submit" name="register" id="submit" class="form-submit" value="Register Here"/>
+          <input type="submit" name="update" id="submit" class="form-submit" value="Update Infomations"/>
       </div>
   </form>
 
@@ -288,7 +309,7 @@
   </div>
 
   <?php
-  customerRegitration();
+  updateCustomer($user);
   ?>
 
 

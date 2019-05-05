@@ -486,7 +486,7 @@ function totalPrice(){
 
 }
 
-
+// register to the database
 function customerRegitration(){
 
   global $con;
@@ -595,25 +595,51 @@ function customerLogging(){
 }
 
 
-// get username
-// function getUsername($useremail){
-//   global $con;
-//   $name;
-//
-// $sql = "SELECT customer_name FROM customers WHERE customer_email ='$useremail'";
-// $result = mysqli_query($con, $sql);
-//
-// $check = mysqli_num_rows($result);
-//
-// if ($check > 0) {
-//         $name = $row['customer_name'];
-// } else {
-//     $name = "Guest";
-// }
-// return $name;
-// $conn->close();
-// }
+// update the database with customer informations
+function updateCustomer($user){
 
+  global $con;
+
+
+if(isset($_POST['update'])){
+
+  $ip = getIp();
+
+  $c_name = $_POST['c_name'];
+  $c_email = $_POST['c_email'];
+  $c_pass = $_POST['c_pass'];
+  $c_country = $_POST['c_country'];
+  $c_city = $_POST['c_city'];
+  $c_contact = $_POST['c_contact'];
+  $c_address = $_POST['c_address'];
+
+  $c_image = $_FILES['c_image']['name'];
+
+  $c_image_tmp = $_FILES['c_image']['tmp_name'];
+
+  $get_customer = "SELECT * FROM customers WHERE customer_email = '$user'";
+
+  $run_customer = mysqli_query($con, $get_customer);
+
+  $row_customer = mysqli_fetch_array($run_customer);
+
+  $id = $row_customer['customer_id'];
+
+  move_uploaded_file($c_image_tmp, "customer_images/$c_image");
+
+  $update_customers = "UPDATE customers SET customer_name='$c_name', customer_email='$c_email', customer_pass='$c_pass',
+  customer_country='$c_country', customer_city='$c_city', customer_contact='contact', customer_address='$c_address',
+  customer_image='$c_image' WHERE customer_id='$id'";
+
+  $run_update = mysqli_query($con, $update_customers);
+
+  if ($run_update) {
+    echo "<script>alert('Your Account has Been Updated!!')</script>";
+    echo "<script>window.open('../logout.php','_self')</script>";
+  }
+}
+
+}
 
 
 ?>
