@@ -1,3 +1,6 @@
+<?php
+include('includes/db.php');
+ ?>
 <div>
 
   <form method="POST" action="">
@@ -13,14 +16,14 @@
       <tr>
         <td class="mb-2" align="left"><b>Email:</b></td>
         <td  class="mb-2" align="right">
-          <input type="text" name="email" value="" placeholder="Enter Email" class="form-control">
+          <input type="text" name="email" value="" placeholder="Enter Email" class="form-control" required>
         </td>
       </tr>
 
       <tr>
         <td  class="mb-2" align="left"><b>Password:</b></td>
         <td class="mb-2" align="right">
-          <input type="password" name="pass" value="" placeholder="Enter Password" class="form-control">
+          <input type="password" name="pass" value="" placeholder="Enter Password" class="form-control" required>
         </td>
       </tr>
 
@@ -30,7 +33,7 @@
 
       <tr>
         <td colspan="2" align="right">
-          <input type="submit" name="login" value="Loging" class="btn btn-primary mt-2">
+          <input type="submit" name="loging" value="Loging" class="btn btn-primary mt-2">
         </td>
       </tr>
 
@@ -42,5 +45,11 @@
     </table>
 
   </form>
+
+  <?php
+
+      customerLogging();
+
+   ?>
 
 </div>

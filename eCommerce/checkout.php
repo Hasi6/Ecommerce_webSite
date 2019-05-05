@@ -1,7 +1,6 @@
 <?php
   session_start();
   include("header.php");
-  include("functions/functions.php");
   include('includes/db.php');
 ?>
 
@@ -25,7 +24,7 @@
 </head>
 <body>
       <div class="container"id="guest_area">
-          <span style="float:right;">Welcome guest! <br><b>Total Items: <?php totalItems(); ?> </b> <br> <b>Total Price: $ <?php totalPrice(); ?> </b> <br> <a href="cart.php">Go to cart</a></span>
+          <span style="float:right;"><b>Total Items: <?php totalItems(); ?> <br></b> <b>Total Price: $ <?php totalPrice(); ?> </b> <br></span>
           <?php
               echo $ip = getIp();
               cart();
@@ -132,8 +131,6 @@
       ">
 
             <?php
-              // getPro();
-              // getCatPro();
 
               if(!isset($_SESSION['customer_email'])){
 

@@ -1,3 +1,7 @@
+<?php
+include("functions/functions.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -15,7 +19,7 @@
   <body>
 
     <nav class="nav navbar-expand-md navbar-custom bg-dark navbar-dark sticky-top" id="main-nav">
-          <div class="container">
+          <div class="container-fluid">
             <div>
               <button class="navbar-toggler" type="button" data-toggle="collapse"
               data-target="#navbarsExamples09" aria-controls="navbarsExamples09"
@@ -23,7 +27,7 @@
               <span class="navbar-toggler-icon"></span>
             </button>
             </div>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarsExamples09">
+            <div class="collapse navbar-collapse justify-content-end" id="navbarsExamples09" style="width: 100%; margin: 0 100px;">
               <ul class="nav navbar-nav">
                 <li>
                   <a href="ecommerce.php" class="nav-link">Home</a>
@@ -47,8 +51,36 @@
                   <a href="#who" class="nav-link  nav-right">Sign In</a>
                 </li>
                 <li>
-                  <a href="#contact" class="nav-link  nav-rightlink">Cart</a>
+                  <a href="cart.php" class="nav-link  nav-rightlink">Cart</a>
                 </li>
+                <li>
+                  <?php
+
+                    if(!isset($_SESSION['customer_email'])){
+                      echo "<a href='checkout.php'>Loging</a>";
+                    }
+                    else{
+                      echo "<a href='logout.php'>Logout</a>";
+                    }
+
+                   ?>
+                </li>
+                <li>
+                  <?php
+
+                    if(isset($_SESSION['customer_email'])){
+                      $name = $_SESSION['customer_email'];
+                      echo "<a href='customers/my_account.php'>$name</a>";
+                    }
+                    else{
+                      echo "<a href='#'>Guest</a>";
+                    }
+
+                   ?>
+
+                </li>
+
+
               </ul>
             </div>
           </div>

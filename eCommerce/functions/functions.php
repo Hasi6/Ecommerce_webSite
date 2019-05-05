@@ -80,7 +80,7 @@
 
     global $con;
 
-    $get_pro = "SELECT * FROM products ORDER BY RAND() LIMIT 0,10";
+    $get_pro = "SELECT * FROM products ORDER BY RAND() LIMIT 0,100";
 
     $run_pro = mysqli_query($con, $get_pro);
 
@@ -546,14 +546,73 @@ if(isset($_POST['register'])){
 
 }
 
+}
 
+// customer logging function
+function customerLogging(){
+
+  global $con;
+
+  if (isset($_POST['loging'])) {
+
+    $c_email = $_POST['email'];
+    $c_pass = $_POST['pass'];
+
+    $select_c = "SELECT * FROM customers WHERE customer_email='$c_email' AND customer_pass = '$c_pass'";
+    $run_c = mysqli_query($con, $select_c);
+
+    $check_customer = mysqli_num_rows($run_c);
+
+    $ip = getIp();
+
+    $sel_cart = "SELECT * FROM cart WHERE ip_add='$ip'";
+
+    $run_cart = mysqli_query($con, $sel_cart);
+
+    $check_cart = mysqli_num_rows($run_cart);
+
+    if ($check_customer == 0) {
+        echo "<script>alert('Password or Email is incorrect!! Please Try again')</script>";
+        exit();
+    }
+
+    else if ($check_customer > 0 && $check_cart == 0) {
+
+      $_SESSION['customer_emil']=$c_email;
+
+      echo "<script>alert('Logged Succsessfully')</script>";
+      echo "<script>window.open('customer/my_account.php','_self')</script>";
+    }
+    else{
+
+      $_SESSION['customer_email']=$c_email;
+
+      echo "<script>alert('Logged Succsessfully')</script>";
+      echo "<script>window.open('checkout.php','_self')</script>";
+    }
+
+  }
 }
 
 
-
-
-
-
+// get username
+// function getUsername($useremail){
+//   global $con;
+//   $name;
+//
+// $sql = "SELECT customer_name FROM customers WHERE customer_email ='$useremail'";
+// $result = mysqli_query($con, $sql);
+//
+// $check = mysqli_num_rows($result);
+//
+// if ($check > 0) {
+//         $name = $row['customer_name'];
+// } else {
+//     $name = "Guest";
+// }
+// return $name;
+// $conn->close();
+// }
 
 
 

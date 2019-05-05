@@ -1,6 +1,5 @@
 <?php
   include("header.php");
-  include("functions/functions.php");
   include('includes/db.php');
 ?>
 
@@ -24,7 +23,7 @@
 </head>
 <body>
       <div class="container"id="guest_area">
-          <span style="float:right;">Welcome guest! <br><b>Tital Items: </b> <br> <b>Total Price: </b> <br> <a href="cart.php">Go to cart</a></span>
+          <span style="float:right;"><b>Tital Items: </b> <br> <b>Total Price: </b> <br></span>
       </div>
       <nav class="nav navbar-expand-md navbar-custom">
 

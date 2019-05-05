@@ -1,6 +1,6 @@
 <?php
+  session_start();
   include("header.php");
-  include("functions/functions.php");
   include('includes/db.php');
 ?>
 
@@ -24,12 +24,17 @@
 </head>
 <body>
       <div class="container"id="guest_area">
-          <span style="float:right;">Welcome guest! <br><b>Total Items: <?php totalItems(); ?> </b> <br> <b>Total Price: $ <?php totalPrice(); ?> </b> <br> <a href="cart.php">Go to cart</a></span>
+
+          <span style="float:right;"><b>Total Items: <?php totalItems(); ?> </b> <br> <b>Total Price: $ <?php totalPrice(); ?> </b> <br> </span>
           <?php
               echo $ip = getIp();
               cart();
            ?>
       </div>
+
+
+
+
       <nav class="nav navbar-expand-md navbar-custom">
 
         <div class="container" id="navigation-bar2">
