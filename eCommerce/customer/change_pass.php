@@ -29,6 +29,6 @@
 
 <?php
 
-  changePass($email);
+  changePass($user);
 
  ?>

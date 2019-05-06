@@ -663,11 +663,11 @@ function changePass($user){
         echo "<script>alert('Current Password is invalid')</script>";
         echo "<script>window.open('my_account.php?change_pass','_self')</script>";
       }
-      if ($new_pass != $confirm_new_pass) {
+      else if ($new_pass != $confirm_new_pass) {
         echo "<script>alert('Password and Confirm Password are not Matched')</script>";
         }
         else {
-          $update_pass = "UPDATE customers SET customer_pass='$new_pass'";
+          $update_pass = "UPDATE customers SET customer_pass='$new_pass' WHERE customer_email='$user'";
 
           $set_update_pass = mysqli_query($con, $update_pass);
           echo "<script>alert('Password Changed Succsessfully!! Now log againg to shopping')</script>";
