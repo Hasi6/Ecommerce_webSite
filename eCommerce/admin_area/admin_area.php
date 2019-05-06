@@ -109,7 +109,7 @@
                  if(isset($_GET['insert_new_products'])){
                    echo "<script>window.open('insert_product.php','_self')</script>";
                  }
-                 if(isset($_GET['change_pass'])){
+                 if(isset($_GET['view_all_products'])){
                    echo "<script>window.open('view_product.php','_self')</script>";
                  }
                  if(isset($_GET['insert_new_categories'])){

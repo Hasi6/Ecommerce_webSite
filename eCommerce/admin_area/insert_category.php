@@ -1,5 +1,5 @@
 <?php
-  include("../functions/functions.php");
+include("header.php");
   include('../includes/db.php');
 ?>
 <!DOCTYPE html>
@@ -131,12 +131,12 @@
     $check_category = "SELECT * FROM categories WHERE cat_title ='$category_name'";
 
     $run_check = mysqli_query($con, $check_category);
-      
+
     if(mysqli_num_rows($run_check) > 0){
       echo "<script>window.alert('Already in Category Menu')</script>
-      <script>window.open('insert_brand.php','_self')</script>"; //donothing
+      <script>window.open('insert_category.php','_self')</script>"; //donothing
     }
-      
+
     else{
     $insert_cat = "INSERT INTO categories (cat_title)
     VALUES ('$category_name')";

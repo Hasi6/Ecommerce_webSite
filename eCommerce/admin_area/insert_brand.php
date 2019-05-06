@@ -1,5 +1,5 @@
 <?php
-  include("../functions/functions.php");
+include('header.php');
   include('../includes/db.php');
 ?>
 <!DOCTYPE html>
@@ -131,7 +131,7 @@
     $check_brand = "SELECT * FROM brands WHERE brand_title ='$category_name'";
 
     $run_check = mysqli_query($con, $check_brand);
-      
+
     if(mysqli_num_rows($run_check) > 0){
       echo "<script>window.alert('Already in Brand Menu')</script>
       <script>window.open('insert_brand.php','_self')</script>"; //donothing

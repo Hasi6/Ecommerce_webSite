@@ -45,7 +45,7 @@
 						<?php
 
             viewProduct();
-
+            
            ?>
 					</table>
 				</div>

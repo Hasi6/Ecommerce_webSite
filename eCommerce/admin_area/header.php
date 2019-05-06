@@ -31,48 +31,19 @@ include("../functions/functions.php");
             <div class="collapse navbar-collapse justify-content-end" id="navbarsExamples09" style="width: 100%; margin: 0 100px;">
               <ul class="nav navbar-nav">
                 <li>
-                  <a href="ecommerce.php" class="nav-link">Home</a>
+                  <a href="admin_area.php" class="nav-link">Home</a>
                 </li>
                 <li>
-                  <a href="all_products.php" class="nav-link">All Products</a>
+                  <a href="view_product.php" class="nav-link">See All Products</a>
                 </li>
                 <li>
-                  <a href="#who" class="nav-link">My Account</a>
+                  <a href="see_customers.php" class="nav-link">See All Customers</a>
                 </li>
                 <li>
-                  <a href="#contact" class="nav-link">Contact us</a>
+                  <a href='logout.php'>Logout</a>
                 </li>
                 <li>
-                  <form class="" action="results.php" method="get" enctype="multipart/form-data">
-                    <input type="text" name="user_query" value="" id="search" placeholder="Search">
-                    <input type="submit" name="search" value="Search" class="btn btn-primary" id="search-btn">
-                  </form>
-                </li>
-                <li>
-                  <?php
-
-                    if(!isset($_SESSION['customer_email'])){
-                      echo "<a href='checkout.php'>Loging</a>";
-                    }
-                    else{
-                      echo "<a href='logout.php'>Logout</a>";
-                    }
-
-                   ?>
-                </li>
-                <li>
-                  <?php
-
-                    if(isset($_SESSION['customer_email'])){
-                      $name = $_SESSION['customer_email'];
-                      echo "<a href='customer/my_account.php'>$name</a>";
-                    }
-                    else{
-                      echo "<a href='#'>Guest</a>";
-                    }
-
-                   ?>
-
+                  <a href="#">Admin</a>
                 </li>
 
 
