@@ -36,33 +36,17 @@
                     <div class="profile-img">
                       <h2>Admin Page</h2><hr>
 
-                      <?php
-
-                      $user = $_SESSION['customer_email'];
-
-                      $get_details = "SELECT * FROM customers WHERE customer_email = '$user'";
-
-                      $run_details = mysqli_query($con, $get_details);
-
-                      $row_details = mysqli_fetch_array($run_details);
-
-                      $c_image = $row_details['customer_image'];
-                      $c_name = $row_details['customer_name'];
-                      $c_pass = $row_details['customer_pass']; // to pass as a parameter to the changePass function
-
-                       ?>
-
                         <img src="customer_images/<?php echo $c_image; ?>" alt=""/><br>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="profile-head">
-                                <h2>
+                                <!-- <h2>
                                     <?php echo $c_name; ?>
                                 </h2>
                                 <h3>
                                     <?php echo $user; ?>
-                                </h3>
+                                </h3> -->
 
                     </div>
                 </div>
@@ -73,13 +57,21 @@
             <div class="row" id="left_box">
                 <div class="col-md-4"><br>
                     <div class="profile-work">
-                        <a href="my_account.php?my_orders">My Orders</a><br/>
+                        <a href="admin_area.php?insert_new_products">Insert New Products</a><br/>
                         <hr>
-                        <a href="my_account.php?edit_account">Edit Account</a><br/>
+                        <a href="admin_area.php?view_all_products">View All Products</a><br/>
                         <hr>
-                        <a href="my_account.php?change_pass">Change Password</a><br>
+                        <a href="admin_area.php?insert_new_categories">Insert New Category</a><br>
                         <hr>
-                        <a href="my_account.php?delete_account">Delete Account</a>
+                        <a href="admin_area.php?view_all_categories">View All Categories</a><br>
+                        <hr>
+                        <a href="admin_area.php?insert_new_brands">Insert New Brand</a><br>
+                        <hr>
+                        <a href="admin_area.php?view_all_brands">View All Brands</a><br>
+                        <hr>
+                        <a href="admin_area.php?view_all_customers">View All Customers</a><br>
+                        <hr>
+                        <a href="admin_area.php?insert_slide_show_images">Add New Image to Slide Show</a><br>
                         <hr>
 
                     </div>
@@ -89,19 +81,24 @@
             <div class="" id="right_box">
               <?php
 
-              if(!isset($_GET['my_orders'])){
-                if(!isset($_GET['edit_account'])){
-                  if(!isset($_GET['change_pass'])){
-                    if(!isset($_GET['delete_account'])){
+              if(!isset($_GET['insert_new_products'])){
+                if(!isset($_GET['view_all_products'])){
+                  if(!isset($_GET['insert_new_categories'])){
+                    if(!isset($_GET['view_all_categories'])){
+                      if(!isset($_GET['insert_new_brands'])){
+                        if(!isset($_GET['view_all_brands'])){
+                          if(!isset($_GET['view_all_customers'])){
+                            if(!isset($_GET['insert_slide_show_images'])){
 
-                      echo "<h1> Welcome To Admin Area </h1>'";
+                                echo "<h1> Welcome To Admin Area </h1>'";
 
+                            }
+                          }
+                        }
+                      }
                     }
-
                   }
-
                 }
-
               }
 
                ?>
@@ -109,16 +106,26 @@
                <div class="" id="right_box">
                  <?php
 
-                 if(isset($_GET['edit_account'])){
-                   include("edit_account.php");
+                 if(isset($_GET['insert_new_products'])){
+                   echo "<script>window.open('insert_product.php','_self')</script>";
                  }
-
                  if(isset($_GET['change_pass'])){
-                   include("change_pass.php");
+                   echo "<script>window.open('view_product.php','_self')</script>";
                  }
-
-                 if(isset($_GET['delete_account'])){
-                   include("delete_account.php");
+                 if(isset($_GET['insert_new_categories'])){
+                   echo "<script>window.open('insert_category.php','_self')</script>";
+                 }
+                 if(isset($_GET['change_pass'])){
+                   echo "<script>window.open('insert_product.php','_self')</script>";
+                 }
+                 if(isset($_GET['insert_new_brands'])){
+                   echo "<script>window.open('insert_brand.php','_self')</script>";
+                 }
+                 if(isset($_GET['change_pass'])){
+                   echo "<script>window.open('insert_product.php','_self')</script>";
+                 }
+                 if(isset($_GET['insert_slide_show_images'])){
+                   echo "<script>window.open('insert.php','_self')</script>";
                  }
 
                   ?>
