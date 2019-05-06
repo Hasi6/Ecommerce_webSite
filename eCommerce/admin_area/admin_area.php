@@ -1,7 +1,19 @@
 <?php
-  session_start();
-  include("header.php");
-  include('../includes/db.php');
+
+session_start();
+include("header.php");
+include('../includes/db.php');
+
+  if (isset($_SESSION['username'])) {
+  	$userLoggedIn = $_SESSION['username'];
+  	$user_details_query = mysqli_query($con, "SELECT * FROM admin WHERE username='$userLoggedIn'");
+  	$user = mysqli_fetch_array($user_details_query);
+  }
+  else {
+  	header("Location: admin_log.php");
+  }
+
+
 ?>
 
 
