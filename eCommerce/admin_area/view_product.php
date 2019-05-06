@@ -44,8 +44,35 @@
 						</thead>
 						<?php
 
-            viewProduct();
-            
+            $get_pro = "SELECT * FROM products";
+
+            $run_pro = mysqli_query($con, $get_pro);
+
+            $number = 0;
+
+            while($row_pro=mysqli_fetch_array($run_pro)){
+
+              $pro_title = $row_pro['product_title'];
+              $pro_image = $row_pro['product_image'];
+              $pro_price = $row_pro['product_price'];
+              $pro_id = $row_pro['product_id'];
+
+              $number++;
+?>
+              <tbody>
+                  <tr>
+                    <td class='column1'><?php echo $pro_id;?> </td>
+                    <td class='column2'><?php echo $pro_title;?> </td>
+                    <td class='column3'><img src='product_images/<?php echo $pro_image; ?>' height='60' width='60'> </td>
+                    <td class='column4'><?php echo $pro_price;?> </td>
+                    <td class='column5'><a href='edit_product.php?edit_pro=<?php echo $pro_id;?>'>Edit</a> </td>
+                    <td class='column6'><a href='delete_pro.php?delete_pro=<?php echo $pro_id;?>'>Delete</a> </td>
+                  </tr>
+              </tbody>
+              <?php
+
+            }
+
            ?>
 					</table>
 				</div>
