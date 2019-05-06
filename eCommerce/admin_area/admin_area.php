@@ -121,8 +121,8 @@
                  if(isset($_GET['insert_new_brands'])){
                    echo "<script>window.open('insert_brand.php','_self')</script>";
                  }
-                 if(isset($_GET['change_pass'])){
-                   echo "<script>window.open('insert_product.php','_self')</script>";
+                 if(isset($_GET['view_all_brands'])){
+                   echo "<script>window.open('view_brands.php','_self')</script>";
                  }
                  if(isset($_GET['insert_slide_show_images'])){
                    echo "<script>window.open('insert.php','_self')</script>";
