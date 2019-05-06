@@ -14,7 +14,7 @@
 
       if ($run_delete) {
         echo "<script>window.open('admin_area.php?view_products','_self')</script>";
-        // echo "<script>alert('Products Has been deleted successfully')</script>";
+        echo "<script>alert('Product Has been deleted successfully')</script>";
       }
 
     }

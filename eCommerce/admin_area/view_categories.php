@@ -59,8 +59,8 @@
                   <tr>
                     <td class='column1'><?php echo $cat_id;?> </td>
                     <td class='column2'><?php echo $cat_title;?> </td>
-                    <td class='column5'><a href='edit_cat.php?edit_pro=<?php echo $cat_id;?>'>Edit</a> </td>
-                    <td class='column6'><a href='delete_cat.php?delete_pro=<?php echo $cat_id;?>'>Delete</a> </td>
+                    <td class='column5'><a href='edit_cat.php?edit_cat=<?php echo $cat_id;?>'>Edit</a> </td>
+                    <td class='column6'><a href='delete_cat.php?delete_cat=<?php echo $cat_id;?>'>Delete</a> </td>
                   </tr>
               </tbody>
               <?php
